@@ -1,0 +1,4 @@
+.bg-hero-section {
+  background-image: linear-gradient(rgba(var(--dark-rgb) / 0.6), rgba(var(--dark-rgb) / 0.6)),
+    url('/assets/images/hero-section.jpg');
+}
