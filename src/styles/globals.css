@@ -42,14 +42,11 @@
 }
 
 html.light {
-    --dark: 0, 0, 0; /* Black */
-    --light: 255, 255, 255; /* White */
+    --dark: 0, 0, 0; /* black */
+    --light: 255, 255, 255; /* white */
     --ghost-white: 240, 240, 240; /* Neutral gray */
-    --fade-blue: 230, 244, 241; /* Soft blue-gray */
-    --blue-grey: 64, 71, 86; /* Neutral blue-gray */
-    --primary: 0, 128, 222; /* Indigo for primary */
+    --primary: 0, 40, 172; /* blue for primary */
     --secondary: 230, 244, 241; /* Light teal for secondary */
-    --complementary: 64, 71, 86; /* Neutral complement */
     --textcolor: 62, 65, 76; /* Light gray for text */
     --error: 217, 45, 32; /* Bright red */
     --warning: 253, 176, 34; /* Amber */
@@ -58,14 +55,11 @@ html.light {
 }
 
 html.dark {
-    --dark: 0, 0, 0; /* Black */
-    --light: 255, 255, 255; /* White */
+    --dark: 0, 0, 0; /* black */
+    --light: 255, 255, 255; /* white */
     --ghost-white: 240, 240, 240; /* Neutral gray */
-    --fade-blue: 230, 244, 241; /* Soft blue-gray */
-    --blue-grey: 64, 71, 86; /* Neutral blue-gray */
-    --primary: 0, 128, 222; /* Indigo for primary */
+    --primary: 0, 40, 172; /* blue for primary */
     --secondary: 230, 244, 241; /* Light teal for secondary */
-    --complementary: 64, 71, 86; /* Neutral complement */
     --textcolor: 62, 65, 76; /* Light gray for text */
     --error: 217, 45, 32; /* Bright red */
     --warning: 253, 176, 34; /* Amber */
