@@ -1,8 +1,8 @@
-import Input from "@/components/input";
-import { IInputState } from "@/components/input/useInput";
-import Logo from "@/components/svg/logo";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { IInputState } from "@/components/input/useInput";
+import Input from "@/components/input";
+import Logo from "@/components/svg/logo";
 
 export default function Login() {
     const [password, setPassword] = useState<IInputState>({ value: "" });
