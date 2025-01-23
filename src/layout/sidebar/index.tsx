@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { TLayoutProps } from "@/layout/layout";
 import Logo from "@/components/svg/logo";
@@ -10,6 +10,18 @@ import LogoutDoorOut from "@/components/svg/logout-door-out";
 export default function Sidebar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
     const { menus } = useSidebar();
     const [dockSideBar, setDockSideBar] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            setDockSideBar(width <= 640 && false);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     return (
         <div
