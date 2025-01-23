@@ -1,4 +1,5 @@
 // import { useAuth } from "";
+import Layouts from "@/layout/layout";
 import { useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
@@ -11,7 +12,11 @@ const ProtectedRoute = () => {
         return <Navigate to="/login" replace />;
     }
 
-    return <Outlet />;
+    return (
+        <Layouts>
+            <Outlet />
+        </Layouts>
+    );
 };
 
 export default ProtectedRoute;
