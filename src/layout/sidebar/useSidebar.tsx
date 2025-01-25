@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
 import DashboardSquares from "@/components/svg/dashboard-squares";
 import ChartLineUp from "@/components/svg/chart-line-up";
 import Cart from "@/components/svg/cart";
@@ -172,10 +171,7 @@ export default function useSidebar() {
   ];
   const navListRef = useRef<HTMLUListElement>(null);
   const [clickedNavYPosition, setClickedNavYPosition] = useState<number>(0);
-  const [subMenuClicked, setSubMenuClicked] = useState<string>("");
-  const [navOpen, setNavOpen] = useState(false);
   const [dockSideBar, setDockSideBar] = useState(false);
-  const pathName = useLocation().pathname;
 
   useEffect(() => {
     const navList = navListRef.current;
@@ -198,16 +194,5 @@ export default function useSidebar() {
     };
   }, []);
 
-  return {
-    setNavOpen,
-    setSubMenuClicked,
-    setDockSideBar,
-    subMenuClicked,
-    navOpen,
-    pathName,
-    navListRef,
-    clickedNavYPosition,
-    menus,
-    dockSideBar,
-  };
+  return { menus, dockSideBar, navListRef, clickedNavYPosition, setDockSideBar };
 }

@@ -3,6 +3,7 @@ import { TLayoutProps } from "@/layout/layout";
 import { getInitials } from "@/utils/formatting";
 import NotificationBell from "@/components/svg/notification-bell";
 import MenuRight from "@/components/svg/menu-right";
+import toast from "react-hot-toast";
 
 export default function Topbar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -26,7 +27,7 @@ export default function Topbar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
         </div>
 
         <div className="flex items-center gap-5">
-          <div className="">
+          <div onClick={() => toast("Hello")} className="">
             <NotificationBell className="cursor-pointer text-3xl text-primary" />
           </div>
 
