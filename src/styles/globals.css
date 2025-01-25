@@ -18,79 +18,81 @@
 /* } */
 
 * {
-    margin: 0;
-    padding: 0;
-    transition: all 0.1s ease;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.1s ease;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 *::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--light);
+  background: var(--light);
 }
 
 *::-webkit-scrollbar-thumb {
-    background: rgba(var(--primary-rgb) / 0.4);
+  background: rgba(var(--primary-rgb) / 0.4);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: rgba(var(--primary-rgb) / 0.6);
+  background: rgba(var(--primary-rgb) / 0.6);
 }
 
 html.light {
-    --dark: 0, 0, 0; /* black */
-    --light: 255, 255, 255; /* white */
-    --ghost-white: 240, 240, 240; /* Neutral gray */
-    --primary: 0, 40, 172; /* blue for primary */
-    --secondary: 230, 244, 241; /* Light teal for secondary */
-    --textcolor: 62, 65, 76; /* Light gray for text */
-    --error: 217, 45, 32; /* Bright red */
-    --warning: 253, 176, 34; /* Amber */
-    --success: 5, 79, 49; /* Deep green */
-    --info: 14, 54, 255; /* Rich blue */
+  --dark: 0, 0, 0; /* black */
+  --light: 255, 255, 255; /* white */
+  --ghost-white: 240, 240, 240; /* Neutral gray */
+  --primary: 238, 60, 39; /* orange for primary */
+  --secondary: 230, 244, 241; /* Light teal for secondary */
+  --textcolor: 62, 65, 76; /* Light gray for text */
+  --error: 217, 45, 32; /* Bright red */
+  --warning: 253, 176, 34; /* Amber */
+  --success: 5, 79, 49; /* Deep green */
+  --info: 14, 54, 255; /* Rich blue */
 }
 
 html.dark {
-    --dark: 0, 0, 0; /* black */
-    --light: 255, 255, 255; /* white */
-    --ghost-white: 240, 240, 240; /* Neutral gray */
-    --primary: 0, 40, 172; /* blue for primary */
-    --secondary: 230, 244, 241; /* Light teal for secondary */
-    --textcolor: 62, 65, 76; /* Light gray for text */
-    --error: 217, 45, 32; /* Bright red */
-    --warning: 253, 176, 34; /* Amber */
-    --success: 5, 79, 49; /* Deep green */
-    --info: 14, 54, 255; /* Rich blue */
+  --dark: 0, 0, 0; /* black */
+  --light: 255, 255, 255; /* white */
+  --ghost-white: 240, 240, 240; /* Neutral gray */
+  --primary: 238, 60, 39; /* orange for primary */
+  /* --primary: 255, 94, 20; orange for primary */
+  /* --primary: 0, 40, 172; blue for primary */
+  --secondary: 230, 244, 241; /* Light teal for secondary */
+  --textcolor: 62, 65, 76; /* Light gray for text */
+  --error: 217, 45, 32; /* Bright red */
+  --warning: 253, 176, 34; /* Amber */
+  --success: 5, 79, 49; /* Deep green */
+  --info: 14, 54, 255; /* Rich blue */
 }
 
 html {
-    overflow-x: hidden;
-    overflow-y: auto;
-    min-height: 100vh;
-    scroll-behavior: smooth;
-    background: rgba(var(--ghost-white));
-    color: rgba(var(--textcolor));
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  background: rgba(var(--ghost-white));
+  color: rgba(var(--textcolor));
 }
 
 html[class] body {
-    display: block;
+  display: block;
 }
 
 #root {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
-    width: 100%;
-    height: 100vh;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-size: 15px;
 }
 
 h1,
@@ -101,44 +103,44 @@ h5,
 h6,
 .header-font,
 .font-roboto {
-    font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .font-open-sans {
-    font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .wrapper,
 .container {
-    width: 98%;
-    max-width: 1250px;
-    margin: auto;
-    height: 100%;
+  width: 98%;
+  max-width: 1250px;
+  margin: auto;
+  height: 100%;
 }
 
 .sub-header {
-    position: relative;
+  position: relative;
 }
 
 .sub-header::before {
-    content: "";
-    top: 50%;
-    left: -45px;
-    position: absolute;
-    width: 40px;
-    height: 1.5px;
-    background: rgba(var(--textcolor));
-    display: block;
-    border-radius: 10px;
+  content: "";
+  top: 50%;
+  left: -45px;
+  position: absolute;
+  width: 40px;
+  height: 1.5px;
+  background: rgba(var(--textcolor));
+  display: block;
+  border-radius: 10px;
 }
 
 @media only screen and (max-width: 650px) {
-    body {
-        font-size: 15px;
-    }
+  body {
+    font-size: 15px;
+  }
 
-    .sub-header::before {
-        left: -25%;
-        width: 30px;
-    }
+  .sub-header::before {
+    left: -25%;
+    width: 30px;
+  }
 }
