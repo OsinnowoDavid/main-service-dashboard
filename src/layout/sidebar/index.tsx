@@ -5,6 +5,7 @@ import useSidebar from "./useSidebar";
 import ChevronLeft from "@/components/svg/chevron-left";
 import LogoutDoorOut from "@/components/svg/logout-door-out";
 import { MenuItem } from "./menu-item";
+import React from "react";
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
   const { menus, dockSideBar, navListRef, clickedNavYPosition, setDockSideBar } = useSidebar();
@@ -14,7 +15,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
       onClick={() => setSidebarOpen(!sidebarOpen)}
       className={`${
         sidebarOpen ? "-translate-x-0" : "-translate-x-full"
-      } fixed bottom-0 top-0 z-50 w-full cursor-pointer overflow-y-auto bg-black/40 backdrop-blur transition md:relative lg:w-fit lg:translate-x-0 lg:overflow-y-clip`}
+      } fixed bottom-0 top-0 z-40 w-full cursor-pointer overflow-y-auto bg-black/40 backdrop-blur transition lg:relative lg:w-fit lg:translate-x-0 lg:overflow-y-clip`}
     >
       <button
         onClick={() => setDockSideBar(!dockSideBar)}
@@ -43,7 +44,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
         <nav className={`h-[calc(100vh-70px)] overflow-auto pb-20 ${dockSideBar ? "pt-16" : ""}`}>
           <ul ref={navListRef}>
             {menus.map((menu) => (
-              <>
+              <React.Fragment key={menu.section}>
                 {!dockSideBar && (
                   <h3 className="px-5 py-2 text-sm/6 font-bold uppercase text-light">
                     {menu.section}
@@ -58,7 +59,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
                   />
                 ))}
                 <br />
-              </>
+              </React.Fragment>
             ))}
 
             <hr className="mt-10" />

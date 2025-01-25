@@ -19,3 +19,42 @@ export const formatNumber = (input: string) => {
   // Format the number with commas
   return numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
+
+export function abbreviateNumber(num: number | bigint): string {
+  const bigNum = BigInt(num); // Convert to BigInt to ensure precision
+
+  if (bigNum >= 1_000_000_000_000_000_000n) {
+    return `${(bigNum / 1_000_000_000_000_000_000n).toString()}q`;
+  } else if (bigNum >= 1_000_000_000_000_000n) {
+    return `${(bigNum / 1_000_000_000_000_000n).toString()}p`;
+  } else if (bigNum >= 1_000_000_000_000n) {
+    return `${(bigNum / 1_000_000_000_000n).toString()}t`;
+  } else if (bigNum >= 1_000_000_000n) {
+    return `${(bigNum / 1_000_000_000n).toString()}b`;
+  } else if (bigNum >= 1_000_000n) {
+    return `${(bigNum / 1_000_000n).toString()}m`;
+  } else if (bigNum >= 1_000n) {
+    return `${(bigNum / 1_000n).toString()}k`;
+  } else {
+    return bigNum.toString();
+  }
+}
+
+export const convertCurrency = (
+  amount: number | bigint,
+  fromCurrency: "USD" | "NGN",
+  toCurrency: "USD" | "NGN",
+) => {
+  const exchangeRate = {
+    USD_TO_NGN: 1300, // Example rate, update accordingly
+    NGN_TO_USD: 1 / 1300,
+  };
+
+  if (fromCurrency === "USD" && toCurrency === "NGN") {
+    return Number(amount) * exchangeRate.USD_TO_NGN;
+  } else if (fromCurrency === "NGN" && toCurrency === "USD") {
+    return Number(amount) * exchangeRate.NGN_TO_USD;
+  } else {
+    throw new Error("Invalid currency conversion request");
+  }
+};

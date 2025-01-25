@@ -7,7 +7,7 @@ export default function Logo({ className }: { className?: string }) {
         xmlns="http://www.w3.org/2000/svg"
         className={className}
       >
-        <g clip-path="url(#clip0_1171_1598)">
+        <g clipPath="url(#clip0_1171_1598)">
           <path
             d="M33.059 13.084H20.2106L0.310547 67.7644H13.1589L25.2902 34.5378L27.8001 45.2349H40.6485L50.987 34.5378L43.5768 54.916H56.4849L71.664 13.084H58.8156L38.1386 34.5378L33.059 13.084Z"
             fill="currentColor"

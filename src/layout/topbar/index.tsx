@@ -6,6 +6,8 @@ import MenuRight from "@/components/svg/menu-right";
 import toast from "react-hot-toast";
 
 export default function Topbar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
+  let time = new Date().toLocaleTimeString();
+  const [ctime, setTime] = useState(time);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, _setUser] = useState({
     firstName: "John",
@@ -15,13 +17,19 @@ export default function Topbar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
     profilePicture: "XXXXXXXXXXXXXXXXXXXXXXXXX",
   });
 
+  const UpdateTime = () => {
+    time = new Date().toLocaleTimeString();
+    setTime(time);
+  };
+  setInterval(UpdateTime);
+
   return (
     <div className="mb-4 w-full border-b-2 px-2 py-4 md:px-10">
       <div className="flex items-center justify-between">
-        <h2 className="hidden text-2xl font-medium md:inline">Overview</h2>
+        <h2 className="font-digital hidden text-lg font-medium lg:inline">{ctime}</h2>
         <div
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="inline w-fit cursor-pointer text-4xl font-medium md:hidden"
+          className="inline w-fit cursor-pointer text-4xl font-medium lg:hidden"
         >
           <MenuRight />
         </div>
