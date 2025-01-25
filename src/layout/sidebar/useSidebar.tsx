@@ -48,11 +48,6 @@ export default function useSidebar() {
           path: "/analytics",
           icon: <ChartLineUp className="text-2xl" />,
         },
-        {
-          title: "Super Admin",
-          path: "/super/super-admin",
-          icon: <ChartLineUp className="text-2xl" />,
-        },
       ],
     },
     {
