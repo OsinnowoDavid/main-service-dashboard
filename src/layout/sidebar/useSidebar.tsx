@@ -16,6 +16,7 @@ import CoinStack from "@/components/svg/coin-stack";
 import Cog from "@/components/svg/cog";
 import ShieldCheck from "@/components/svg/shield-check";
 import ClipboardCheck from "@/components/svg/clipboard-check";
+import UserRole from "@/components/svg/user-role";
 
 export type type_menu_children = {
   title: string;
@@ -27,13 +28,13 @@ export type type_menu_children = {
     path: string;
   }[];
 };
-export type TmenuType = {
+export type type_menu = {
   section: string;
   children: type_menu_children[];
 };
 
 export default function useSidebar() {
-  const menus: TmenuType[] = [
+  const menus: type_menu[] = [
     {
       section: "Dashboard",
       children: [
@@ -48,42 +49,9 @@ export default function useSidebar() {
           icon: <ChartLineUp className="text-2xl" />,
         },
         {
-          title: "Analytics",
-          path: "/super-admin",
+          title: "Super Admin",
+          path: "/super/super-admin",
           icon: <ChartLineUp className="text-2xl" />,
-        },
-        {
-          title: "Analytics",
-          path: "/admin",
-          icon: <ChartLineUp className="text-2xl" />,
-        },
-      ],
-    },
-    {
-      section: "Activity",
-      children: [
-        {
-          title: "What we do",
-          subPath: "/what-we-do",
-          icon: <DashboardSquares className="text-2xl" />,
-          subMenus: [
-            {
-              title: "Educational Program",
-              path: "/educational-program",
-            },
-            {
-              title: "Feeding Program",
-              path: "/feeding-program",
-            },
-            {
-              title: "Analytics",
-              path: "/super-admin",
-            },
-            {
-              title: "Analytics",
-              path: "/admin",
-            },
-          ],
         },
       ],
     },
@@ -163,22 +131,6 @@ export default function useSidebar() {
       ],
     },
     {
-      section: "Activity",
-      children: [
-        {
-          title: "What we do",
-          subPath: "/what-we-do",
-          icon: <DashboardSquares className="text-2xl" />,
-          subMenus: [
-            {
-              title: "Feeding Program",
-              path: "/feeding-program",
-            },
-          ],
-        },
-      ],
-    },
-    {
       section: "Settings",
       children: [
         {
@@ -199,20 +151,24 @@ export default function useSidebar() {
       ],
     },
     {
-      section: "Activity",
+      section: "Control",
       children: [
         {
-          title: "What we do",
-          subPath: "/what-we-do",
-          icon: <Cog className="text-2xl" />,
+          title: "Roles",
+          subPath: "",
+          icon: <UserRole className="text-2xl" />,
           subMenus: [
             {
-              title: "School Program",
-              path: "/school-program",
+              title: "Super Admin",
+              path: "/super-admin",
             },
             {
-              title: "Library Cafe",
-              path: "/library-cafe",
+              title: "Admin",
+              path: "/admin",
+            },
+            {
+              title: "Branch",
+              path: "branch",
             },
           ],
         },
@@ -223,38 +179,15 @@ export default function useSidebar() {
   const [clickedNavYPosition, setClickedNavYPosition] = useState<number>(0);
   const [subMenuClicked, setSubMenuClicked] = useState<string>("");
   const [navOpen, setNavOpen] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_activeMenu, _setActiveMenu] = useState<TmenuType | null>(null);
   const [dockSideBar, setDockSideBar] = useState(false);
   const pathName = useLocation().pathname;
 
-  const getActiveUrl = (path: string, subPath?: string): boolean => {
-    // Check if the main path matches
-    if (pathName === path) {
-      return true;
-    }
-    // Check if the subPath exists and matches
-    if (subPath && pathName.startsWith(subPath)) {
-      return true;
-    }
-    return false;
-  };
-
   useEffect(() => {
     const navList = navListRef.current;
-
     if (navList) {
-      const handleClick = (e: MouseEvent) => {
-        console.log("NAV LIST", e);
-        console.log("Y position (relative to page):", e.clientY);
-        setClickedNavYPosition(e.pageY);
-      };
-
+      const handleClick = (e: MouseEvent) => setClickedNavYPosition(e.pageY);
       navList.addEventListener("click", (e) => handleClick(e));
-
-      return () => {
-        navList.removeEventListener("click", handleClick);
-      };
+      return () => navList.removeEventListener("click", handleClick);
     }
   }, []);
 
@@ -272,7 +205,6 @@ export default function useSidebar() {
 
   return {
     setNavOpen,
-    getActiveUrl,
     setSubMenuClicked,
     setDockSideBar,
     subMenuClicked,
