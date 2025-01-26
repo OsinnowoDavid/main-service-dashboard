@@ -27,7 +27,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
       </button>
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`border-primary-50 h-full min-h-screen max-w-80 cursor-default border-r-2 bg-primary pb-3 text-light transition-all ${
+        className={`border-primary-50 h-[calc(100vh+7rem)] min-h-screen max-w-80 cursor-default border-r-2 bg-primary pb-3 text-light transition-all ${
           dockSideBar ? "md:w-16" : "md:w-56"
         }`}
       >
@@ -41,7 +41,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: TLayoutProps) {
           </div>
         </Link>
 
-        <nav className={`h-[calc(100vh-70px)] overflow-auto pb-20 ${dockSideBar ? "pt-16" : ""}`}>
+        <nav
+          className={`h-screen overflow-auto pb-20 md:h-[calc(100vh-70px)] ${dockSideBar ? "pt-16" : ""}`}
+        >
           <ul ref={navListRef}>
             {menus.map((menu) => (
               <React.Fragment key={menu.section}>

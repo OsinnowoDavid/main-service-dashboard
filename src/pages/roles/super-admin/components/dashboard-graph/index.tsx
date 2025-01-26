@@ -17,6 +17,7 @@ import {
   PointElement,
 } from "chart.js";
 import { _DeepPartialObject } from "node_modules/chart.js/dist/types/utils";
+import Download from "@/components/svg/download";
 
 ChartJS.register(
   CategoryScale,
@@ -82,18 +83,30 @@ const data = {
   ],
 };
 
+const years = [
+  2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010,
+];
+
 export default function DashboardGraph() {
   return (
     <>
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">Graph</h2>
-          <select className="rounded-lg border border-gray-300 bg-gray-100 px-4 py-2 text-sm text-textcolor">
-            <option value="today">Today</option>
-            <option value="week">This Week</option>
-            <option value="month">This Month</option>
-            <option value="year">This Year</option>
-          </select>
+          <div className="flex items-center gap-4">
+            <button className="btn flex items-center gap-2 text-primary/50">
+              <Download className="text-xl" />
+              <p className="text-primary/50">Download</p>
+            </button>
+
+            <select className="rounded-lg border border-dark/50 bg-textcolor/10 px-4 py-2 text-sm text-textcolor ring-1 ring-textcolor/50">
+              {years.map((year, index) => (
+                <option key={index} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
       <div className="flex items-center justify-center rounded-lg border border-textcolor/25 bg-white p-4 shadow-lg">
