@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
   ColumnDef,
   useReactTable,
@@ -8,8 +7,6 @@ import {
   getSortedRowModel,
   getPaginationRowModel,
   flexRender,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  createColumnHelper,
 } from "@tanstack/react-table";
 
 export default function Branch() {
