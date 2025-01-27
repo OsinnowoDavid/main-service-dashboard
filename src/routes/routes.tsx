@@ -18,6 +18,7 @@ export default function Router() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          {/* protected route */}
           <Route element={<ProtectedRoute />}>
             <Route path="/super-admin" element={<SuperAdmin />} />
             <Route path="/super-admin/:id" element={<SuperAdmin />} />
