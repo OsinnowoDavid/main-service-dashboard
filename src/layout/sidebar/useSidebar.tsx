@@ -16,6 +16,8 @@ import Cog from "@/components/svg/cog";
 import ShieldCheck from "@/components/svg/shield-check";
 import ClipboardCheck from "@/components/svg/clipboard-check";
 import UserRole from "@/components/svg/user-role";
+import AirPlane from "@/components/svg/air-plane";
+import Ship from "@/components/svg/ship";
 
 export type type_menu_children = {
   title: string;
@@ -46,6 +48,21 @@ export default function useSidebar() {
           title: "Analytics",
           path: "/analytics",
           icon: <ChartLineUp className="text-2xl" />,
+        },
+      ],
+    },
+    {
+      section: "Uploads Manifests",
+      children: [
+        {
+          title: "Upload Air Cargo",
+          path: "/upload-air-cargo",
+          icon: <AirPlane className="text-2xl" />,
+        },
+        {
+          title: "Upload Sea Cargo",
+          path: "/upload-sea-cargo",
+          icon: <Ship className="text-2xl" />,
         },
       ],
     },
