@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import { usersExtraReducers } from "./auth.api";
+import { authExtraReducers } from "./auth.api";
 
-type t_auth_state = {
+export interface I_auth_state {
   auth: unknown | null;
   counts: number;
   message: string;
   loading: boolean;
   error: string | null;
-};
+}
 
-const initialState: t_auth_state = {
+const initialState: I_auth_state = {
   auth: null,
   counts: 0,
   message: "",
@@ -40,7 +40,7 @@ const authSlice = createSlice({
       state.counts++;
     },
   },
-  // extraReducers: usersExtraReducers,
+  extraReducers: authExtraReducers,
 });
 
 export const { loginReducer, handleFunction, callingReducer } = authSlice.actions;

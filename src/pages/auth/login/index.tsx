@@ -3,21 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { IInputState } from "@/components/input/useInput";
 import Input from "@/components/input";
 import Logo from "@/components/svg/logo";
-// import { useAppDispatch, useAppSelector } from "@/store/hooks/hook";
-// import { callingReducer, loginReducer } from "@/store/slices/auth/auth.slice";
+import { useAppDispatch } from "@/store/hooks/hook";
+import { postLoginApi } from "@/store/slices/auth/auth.api";
 
 export default function Login() {
   const [password, setPassword] = useState<IInputState>({ value: "" });
   const [email, setEmail] = useState<IInputState>({ value: "" });
-  // const counts = useAppSelector((state) => state.auth.counts);
-  // const auth = useAppSelector((state) => state.auth.auth);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submit");
-    navigate("/overview");
+    dispatch(postLoginApi({ adminEmail: email.value, adminPassword: password.value })).then(
+      (res) => {
+        if (res.meta.requestStatus === "rejected") return;
+        navigate("/overview");
+      },
+    );
   };
 
   return (
@@ -29,14 +31,7 @@ export default function Login() {
           </Link>
           <h2 className="text-center text-2xl/9 font-bold tracking-tight">Login</h2>
         </div>
-        {/* {counts}
-        <button onClick={() => dispatch(callingReducer())} className="btn">
-          Click Me
-        </button>
-        <pre>{JSON.stringify(auth, null, "\t")}</pre>
-        <button onClick={() => dispatch(loginReducer("john abacus"))} className="btn">
-          Click Me
-        </button> */}
+
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>

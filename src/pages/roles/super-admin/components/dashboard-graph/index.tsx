@@ -30,18 +30,18 @@ ChartJS.register(
   Legend,
 );
 
-type chart_types = "bar";
+type T_chart_types = "bar";
 
-type t_chart_options = _DeepPartialObject<
-  CoreChartOptions<chart_types> &
-    ElementChartOptions<chart_types> &
+type T_chart_options = _DeepPartialObject<
+  CoreChartOptions<T_chart_types> &
+    ElementChartOptions<T_chart_types> &
     BarControllerChartOptions &
-    PluginChartOptions<chart_types> &
-    ScaleChartOptions<chart_types> &
-    DatasetChartOptions<chart_types>
+    PluginChartOptions<T_chart_types> &
+    ScaleChartOptions<T_chart_types> &
+    DatasetChartOptions<T_chart_types>
 >;
 
-const options: t_chart_options = {
+const options: T_chart_options = {
   responsive: true,
   plugins: {
     legend: {
