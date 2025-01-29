@@ -7,7 +7,6 @@ import {
   getSortedRowModel,
   getPaginationRowModel,
   CellContext,
-  Row,
 } from "@tanstack/react-table";
 import Checkbox from "@/components/checkbox";
 import { convertCurrency } from "@/utils/format-number";
@@ -85,9 +84,67 @@ export const userData: User[] = [
   },
 ];
 
+const columns: ColumnDef<User>[] = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={table.getIsAllRowsSelected()}
+        onChange={table.getToggleAllRowsSelectedHandler()}
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox checked={row.getIsSelected()} onChange={row.getToggleSelectedHandler()} />
+    ),
+  },
+  {
+    accessorKey: "name",
+    header: "Name",
+    cell: (info) => info.getValue(),
+  },
+  {
+    accessorKey: "count",
+    header: "",
+    cell: (info) => <FileCount info={info as CellContext<unknown, unknown>} />,
+  },
+  {
+    accessorKey: "isActive",
+    header: "Status",
+    cell: (info) => <StatusIndicator statusIndicator={info.getValue() as boolean} />,
+  },
+  {
+    accessorKey: "image",
+    header: "Profile",
+    cell: (info) => (
+      <>
+        <img
+          src={info.getValue() as string}
+          className="h-10 w-10 rounded-full object-cover"
+          alt={info.getValue() as string}
+        />
+      </>
+    ),
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+    cell: (info) => info.getValue(),
+  },
+  {
+    accessorKey: "netWorth",
+    header: "Amount",
+    cell: (info) => <>${convertCurrency(info.getValue() as number, "NGN", "USD").toFixed(2)}</>,
+  },
+  {
+    accessorKey: "id",
+    header: "More",
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cell: (info) => <MoreOptionCell row={info.row as any} />,
+  },
+];
+
 export default function useTable() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<User[]>([]);
   const [rowSelection, setRowSelection] = useState({});
 
   useEffect(() => {
@@ -101,66 +158,6 @@ export default function useTable() {
       return setData(data as User[]);
     });
   }, []);
-
-  const columns: ColumnDef<User>[] = [
-    {
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={table.getIsAllRowsSelected()}
-          onChange={table.getToggleAllRowsSelectedHandler()}
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox checked={row.getIsSelected()} onChange={row.getToggleSelectedHandler()} />
-      ),
-    },
-    {
-      accessorKey: "name",
-      header: "Name",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "count",
-      header: "",
-      cell: (info) => <FileCount info={info as CellContext<unknown, unknown>} />,
-    },
-    {
-      accessorKey: "isActive",
-      header: "Status",
-      cell: (info) => <StatusIndicator statusIndicator={info.getValue() as boolean} />,
-    },
-    {
-      accessorKey: "image",
-      header: "Profile",
-      cell: (info) => (
-        <img
-          src={info.getValue() as string}
-          className="h-10 w-10 rounded-full object-cover"
-          alt={info.getValue() as string}
-        />
-      ),
-    },
-    {
-      accessorKey: "email",
-      header: "Email",
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: "netWorth",
-      header: "Amount",
-      cell: (info) => <>${convertCurrency(info.getValue() as number, "NGN", "USD").toFixed(2)}</>,
-    },
-    {
-      accessorKey: "id",
-      header: "More",
-      cell: ({ row }) => {
-        <>
-          <MoreOptionCell row={row as Row<unknown>} />;
-        </>;
-      },
-    },
-  ];
 
   const rerender = React.useReducer(() => ({}), {})[1];
   const table = useReactTable({
