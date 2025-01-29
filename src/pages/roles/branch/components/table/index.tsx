@@ -47,26 +47,44 @@ export const SelectableTable: React.FC = () => {
           ))}
         </tfoot>
       </table>
-      <div className="h-4" />
-      <button onClick={() => rerender()} className="">
+      <br />
+      <hr />
+      <br />
+      <button onClick={() => rerender()} className="btn">
         Rerender
       </button>
       <div className="mt-4 flex items-center gap-4">
-        <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+        <button
+          className="btn"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
           Previous
         </button>
-        <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+        <button className="btn" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
           Next
         </button>
       </div>
-      <pre className="mt-4 rounded bg-gray-100 p-2">
+      {/* Page Size Selector */}
+      <select
+        value={10}
+        onChange={(e) => table.setPageSize(Number(e.target.value))}
+        className="rounded border p-2"
+      >
+        {[5, 10, 20, 50].map((size) => (
+          <option key={size} value={size}>
+            Show {size}
+          </option>
+        ))}
+      </select>
+      {/* <pre className="mt-4 rounded bg-gray-100 p-2">
         Selected Rows:{" "}
         {JSON.stringify(
           table.getSelectedRowModel().flatRows.map((row) => row.original),
           null,
           2,
         )}
-      </pre>
+      </pre> */}
     </>
   );
 };

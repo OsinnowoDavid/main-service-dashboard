@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IInputState } from "@/components/input/useInput";
 import Input from "@/components/input";
 import Logo from "@/components/svg/logo";
@@ -7,6 +7,13 @@ import Logo from "@/components/svg/logo";
 export default function Login() {
   const [password, setPassword] = useState<IInputState>({ value: "" });
   const [email, setEmail] = useState<IInputState>({ value: "" });
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("submit");
+    navigate("/overview");
+  };
 
   return (
     <div>
@@ -19,7 +26,7 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium">
                 Email address
