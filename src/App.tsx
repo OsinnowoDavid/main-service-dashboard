@@ -6,14 +6,18 @@ import Router from "./routes/routes";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Root />
-        <Router />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Root />
+          <Router />
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }
