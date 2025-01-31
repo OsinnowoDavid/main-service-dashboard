@@ -2,7 +2,7 @@ import { decryptData } from "@/utils/crypt";
 import axios, { AxiosInstance } from "axios";
 
 const getToken = (): string | null => {
-  return decryptData(localStorage.getItem("user") || "null")?.token;
+  return decryptData(sessionStorage.getItem("auth") || "null")?.token;
 };
 
 const axiosInstance: AxiosInstance = axios.create({

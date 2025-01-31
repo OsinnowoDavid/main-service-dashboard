@@ -1,25 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IInputState } from "@/components/input/useInput";
 import Input from "@/components/input";
 import Logo from "@/components/svg/logo";
-import { useAppDispatch } from "@/store/hooks/hook";
-import { postLoginApi } from "@/store/slices/auth/auth.api";
+import { useLogin } from "@/store/api/hooks/useAuth";
+import SpinnerSemicircle from "@/components/svg/spinner-semicircle";
 
 export default function Login() {
+  const { mutate, isPending, isSuccess } = useLogin();
   const [password, setPassword] = useState<IInputState>({ value: "" });
   const [email, setEmail] = useState<IInputState>({ value: "" });
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    if (isSuccess) navigate("/overview");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(postLoginApi({ adminEmail: email.value, adminPassword: password.value })).then(
-      (res) => {
-        if (res.meta.requestStatus === "rejected") return;
-        navigate("/overview");
-      },
-    );
+    mutate({ adminEmail: email.value, adminPassword: password.value });
   };
 
   return (
@@ -33,7 +33,7 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium">
                 Email address
@@ -80,21 +80,16 @@ export default function Login() {
             </div>
 
             <div>
-              <button type="submit" className="btn-primary">
+              <button
+                type="submit"
+                disabled={isPending}
+                className="btn-primary flex items-center gap-2"
+              >
                 Sign in
+                {isPending && <SpinnerSemicircle className="h-6 w-6 animate-spin" />}
               </button>
             </div>
           </form>
-
-          {/* <p className="mt-10 text-center text-sm/6 text-gray-500">
-                        Not an member?{" "}
-                        <a
-                            href="#"
-                            className="font-semibold text-indigo-600 hover:text-indigo-500"
-                        >
-                            Contact us
-                        </a>
-                    </p> */}
         </div>
       </div>
     </div>

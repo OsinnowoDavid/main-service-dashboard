@@ -5,10 +5,11 @@ import { LoadingPopUp } from "@/layout/loading";
 
 import Login from "@/pages/auth/login";
 import ForgotPassword from "@/pages/auth/forgot-password";
+import DashboardOverview from "@/pages/dashboard/overview";
 
 // PROTECTED ROUTES
 const Branch = lazy(() => import("@/pages/roles/branch"));
-const SuperAdmin = lazy(() => import("@/pages/roles/super-admin"));
+const SuperAdmin = lazy(() => import("@/pages/roles/super-admin/overview"));
 const Admin = lazy(() => import("@/pages/roles/admin"));
 
 export default function Router() {
@@ -20,6 +21,7 @@ export default function Router() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           {/* protected route */}
           <Route element={<ProtectedRoute />}>
+            <Route path="/overview" element={<DashboardOverview />} />
             <Route path="/super-admin" element={<SuperAdmin />} />
             <Route path="/super-admin/:id" element={<SuperAdmin />} />
 

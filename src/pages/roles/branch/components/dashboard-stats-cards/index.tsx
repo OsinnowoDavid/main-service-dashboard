@@ -29,7 +29,7 @@ export default function DashboardStatsCards() {
       bdColor: "border-green-500",
     },
     {
-      title: "Total Debt ($)",
+      title: "Total Debt (₦)",
       value: 245456897643,
       isCurrency: true,
       icon: <AtmCard className="text-xl text-purple-500" />,
@@ -75,7 +75,7 @@ export default function DashboardStatsCards() {
 
           {stat.isCurrency && (
             <p className="mt-4 block w-full text-xs text-textcolor">
-              ₦{convertCurrency(stat.value, "USD", "NGN").toLocaleString()} (NGN)
+              {convertCurrency(stat.value, "NGN", "USD").toLocaleString()} (USD)
             </p>
           )}
         </div>

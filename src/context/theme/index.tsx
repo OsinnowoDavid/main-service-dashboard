@@ -1,4 +1,3 @@
-"use client";
 import { createContext, useContext, useState, useEffect } from "react";
 
 type ThemeContextType = {
@@ -16,7 +15,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";
-    const storedTheme = localStorage.getItem("theme") || systemTheme;
+    const storedTheme = sessionStorage.getItem("theme") || systemTheme;
     setTheme(storedTheme);
     document.documentElement.className = storedTheme;
   }, []);
@@ -25,12 +24,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     document.documentElement.className = newTheme;
-    localStorage.setItem("theme", newTheme);
+    sessionStorage.setItem("theme", newTheme);
   };
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (!context) {

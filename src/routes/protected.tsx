@@ -1,14 +1,13 @@
 // import { useAuth } from "";
 import Layouts from "@/layout/layout";
-import { useState } from "react";
+import { useAppSelector } from "@/store/hooks/redux-hook";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  // const { isAuthenticated } = useAuth();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isAuthenticated, _setIsAuthenticated] = useState(true);
+  const auth = useAppSelector((state) => state.auth.auth);
+  console.log(auth);
 
-  if (!isAuthenticated) {
+  if (!auth) {
     return <Navigate to="/login" replace />;
   }
 

@@ -46,7 +46,7 @@ export default function Input({
           {/* //* INPUT */}
           <input
             type={inputType}
-            className={`block w-full rounded-md border-2 bg-white px-3 py-1.5 text-base text-textcolor -outline-offset-1 outline-primary ring-primary/25 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:ring-2 sm:text-sm/6 ${
+            className={`block w-full rounded-md border-2 bg-white px-3 py-2.5 text-base text-textcolor -outline-offset-1 outline-primary ring-primary/25 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:ring-2 sm:text-sm/6 ${
               state.error ? "border-red-600" : "border-dark/20"
             } ${type === "password" ? "pr-12" : "pr-3"}`}
             name={name}
@@ -75,7 +75,7 @@ export default function Input({
         <div
           onClick={() => setSeePassword(!seePassword)}
           className={`absolute right-3 top-2 h-6 w-6 cursor-pointer rounded-2xl ${
-            state.message ? "top-2" : "top-2"
+            state.message ? "top-2.5" : "top-2.5"
           }`}
         >
           {seePassword ? <Eye className="h-6 w-6" /> : <EyeOff className="h-6 w-6" />}
